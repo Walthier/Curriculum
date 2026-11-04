@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don Pochoclon</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+    --primario:#D62828;
+    --secundario:#F77F00;
+    --fondo:#647565;
+    --texto:#D79300;
+    --blanco:#fff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:var(--fondo);
+    color:var(--blanco);
+}
+
+/* NAVBAR */
+nav{
+    background:var(--primario);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 8%;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:1.8rem;
+    font-weight:bold;
+    color:var(--texto);
+}
+
+nav ul{
+    display:flex;
+    gap:20px;
+    list-style:none;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.back-portfolio{
+    background:#000;
+    color:#FFA500;
+    border:2px solid #FFA500;
+    padding:6px 12px;
+    border-radius:6px;
+    font-size:0.85rem;
+}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hero h1{
+    font-size:4rem;
+    color:var(--texto);
+}
+
+.hero p{
+    max-width:700px;
+    margin:20px 0;
+    font-size:1.2rem;
+}
+
+.btn{
+    background:var(--secundario);
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:var(--primario);
+}
+
+/* COMBOS */
+.combos{
+    padding:80px 8%;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:40px;
+    color:var(--texto);
+    font-size:2.5rem;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#556456;
+    border-radius:15px;
+    overflow:hidden;
+    text-align:center;
+    padding-bottom:20px;
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card h3{
+    margin:15px 0;
+    color:var(--texto);
+}
+
+.card p{
+    padding:0 15px;
+    margin-bottom:15px;
+}
+
+/* CONTACTO */
+.contacto{
+    padding:80px 8%;
+}
+
+.formulario{
+    max-width:600px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input,
+textarea{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+}
+
+textarea{
+    resize:none;
+    height:150px;
+}
+
+/* FOOTER */
+footer{
+    background:var(--primario);
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
+
+.redes{
+    margin-top:10px;
+}
+
+.redes i{
+    font-size:1.5rem;
+    margin:0 10px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:2.5rem;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">
+        <i class="fa-solid fa-drumstick-bite"></i>
+        Don Pochoclon
+    </div>
+
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#combos">Combos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="./index.html" class="back-portfolio">← Portfolio</a></li>
+    </ul>
+</nav>
+
+<section class="hero" id="inicio">
+    <h1>Don Pochoclon</h1>
+    <p>
+        Los mejores conos de pochoclos de pollo con salsas
+        variadas y sabor explosivo.
+    </p>
+
+    <button class="btn" onclick="verCombos()">
+        Ver Combos
+    </button>
+</section>
+
+<section class="combos" id="combos">
+    <h2 class="titulo">Nuestros Combos</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=800" alt="Combo Clásico">
+            <h3>Combo Clásico</h3>
+            <p>Cono de pollo + salsa cheddar.</p>
+            <button class="btn">$5.000</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800" alt="Combo Picante">
+            <h3>Combo Picante</h3>
+            <p>Pollo crocante con salsa especial.</p>
+            <button class="btn">$6.500</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=800" alt="Combo Familiar">
+            <h3>Combo Familiar</h3>
+            <p>Doble porción + 3 salsas.</p>
+            <button class="btn">$9.500</button>
+        </div>
+
+    </div>
+</section>
+
+<section class="contacto" id="contacto">
+    <h2 class="titulo">Contacto</h2>
+
+    <form class="formulario" onsubmit="event.preventDefault();">
+        <input type="text" placeholder="Nombre">
+        <input type="email" placeholder="Correo">
+        <textarea placeholder="Mensaje"></textarea>
+        <button class="btn" type="submit">Enviar</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 Don Pochoclon - Todos los derechos reservados</p>
+
+    <div class="redes">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-whatsapp"></i>
+    </div>
+</footer>
+
+<script>
+function verCombos(){
+    document.getElementById("combos")
+    .scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1928 @@
+/* ==========================================================================
+   <KM/> | PortFolio — Kevin Martínez
+   Estética: Cyberpunk + 1930s Cuphead (Rubber Hose) + Sombras Profundas
+   Diseño: 100% Simétrico, Mobile-First, Compacto para lucir el Fondo Animado
+   Paleta: #000000 (Negro) | #FFA500 (Naranja) | #780606 (Rojo) | Crema suave
+   ========================================================================== */
+
+:root {
+  --bg-black: #040406;
+  --bg-card: rgba(10, 9, 14, 0.88);
+  --bg-card-inner: rgba(16, 14, 22, 0.92);
+  --color-orange: #FFA500;
+  --color-orange-glow: rgba(255, 165, 0, 0.35);
+  --color-red: #780606;
+  --color-red-bright: #a30b0b;
+  --color-text: #eae4da;          /* Crema vintage de alto contraste accesible */
+  --color-text-muted: #c4bdad;
+  --border-subtle: rgba(120, 6, 6, 0.65);
+  --font-main: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+  --shadow-card:
+    0 4px 0px var(--color-red),
+    0 0 24px rgba(120, 6, 6, 0.35),
+    0 16px 40px rgba(0, 0, 0, 0.96);
+  --shadow-card-hover:
+    0 4px 0px var(--color-orange),
+    0 0 32px rgba(255, 165, 0, 0.45),
+    0 20px 48px rgba(0, 0, 0, 0.98);
+  --nav-height: 78px;
+}
+
+/* Reset global */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 24px);
+  background-color: var(--bg-black);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-black);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.65;
+  position: relative;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==========================================================================
+   0. PANTALLA PERSONALIZADA DE ENTRADA / CARGA (CYBERPUNK + AÑOS 30 RUBBER HOSE)
+   ========================================================================== */
+body.splash-active {
+  overflow: hidden;
+}
+
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.45s ease, visibility 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.intro-splash.splash-closing {
+  opacity: 0;
+  transform: scale(1.06);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-splash-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(120, 6, 6, 0.42) 0%, rgba(0, 0, 0, 0.95) 72%),
+    #000000;
+  pointer-events: none;
+}
+
+/* Rayos giratorios de dibujos animados años 30 estilo Cuphead / Title Card */
+.intro-splash-sunburst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(140vw, 140vh);
+  height: max(140vw, 140vh);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(120, 6, 6, 0.16) 0deg 15deg,
+    transparent 15deg 30deg,
+    rgba(255, 165, 0, 0.08) 30deg 45deg,
+    transparent 45deg 60deg
+  );
+  animation: sunburstSpin 45s linear infinite;
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 20%, transparent 68%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 20%, transparent 68%);
+}
+
+@keyframes sunburstSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.intro-splash-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.28) 0px,
+    rgba(0, 0, 0, 0.28) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.intro-splash-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 120px rgba(0, 0, 0, 0.98),
+    inset 0 0 45px rgba(120, 6, 6, 0.5);
+}
+
+/* Contenedor escénico de la pantalla de carga */
+.intro-stage-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 540px;
+}
+
+/* Circuitos y mangueras laterales (Simetría Bilateral) */
+.splash-circuit-arm {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .splash-circuit-arm {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 68px;
+    height: 140px;
+    pointer-events: none;
+  }
+
+  .arm-left {
+    left: -24px;
+  }
+
+  .arm-right {
+    right: -24px;
+    transform: translateY(-50%) scaleX(-1);
+  }
+
+  .circuit-wire {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, transparent, var(--color-orange));
+    box-shadow: 0 0 10px var(--color-orange);
+  }
+
+  .circuit-node {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-orange);
+    border: 1.5px solid var(--color-red);
+    box-shadow: 0 0 12px var(--color-orange);
+    animation: nodePulse 1.2s infinite alternate ease-in-out;
+  }
+
+  .node-1 { top: calc(50% - 4.5px); left: 12px; }
+  .node-2 { top: calc(50% - 4.5px); left: 36px; animation-delay: 0.35s; }
+  .node-3 { top: calc(50% - 4.5px); right: 0; animation-delay: 0.7s; }
+}
+
+@keyframes nodePulse {
+  0% { transform: scale(0.8); opacity: 0.45; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Tarjeta central Cyberpunk con bordes reforzados */
+.intro-splash-card {
+  position: relative;
+  z-index: 3;
+  width: min(92%, 390px);
+  background: rgba(10, 8, 14, 0.96);
+  border: 2px solid var(--color-orange);
+  border-radius: 20px;
+  padding: 2.3rem 1.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.4rem;
+  box-shadow:
+    0 4px 0px var(--color-red),
+    0 0 32px rgba(255, 165, 0, 0.4),
+    0 0 65px rgba(120, 6, 6, 0.5),
+    0 24px 60px rgba(0, 0, 0, 0.98);
+  animation: introPopIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes introPopIn {
+  0% {
+    transform: scale(0.86);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Esquinas cibernéticas reforzadas */
+.corner-accent {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-style: solid;
+  border-color: var(--color-orange);
+  pointer-events: none;
+}
+
+.corner-tl {
+  top: 9px;
+  left: 9px;
+  border-width: 2.5px 0 0 2.5px;
+  border-top-left-radius: 5px;
+}
+
+.corner-tr {
+  top: 9px;
+  right: 9px;
+  border-width: 2.5px 2.5px 0 0;
+  border-top-right-radius: 5px;
+}
+
+.corner-bl {
+  bottom: 9px;
+  left: 9px;
+  border-width: 0 0 2.5px 2.5px;
+  border-bottom-left-radius: 5px;
+}
+
+.corner-br {
+  bottom: 9px;
+  right: 9px;
+  border-width: 0 2.5px 2.5px 0;
+  border-bottom-right-radius: 5px;
+}
+
+/* Estrellas clásicas de caricatura años 30 titilando */
+.splash-star {
+  position: absolute;
+  top: 50%;
+  font-size: 1.2rem;
+  color: var(--color-orange);
+  text-shadow: 0 0 10px var(--color-orange);
+  pointer-events: none;
+  animation: starTwinkle 1.6s infinite ease-in-out;
+}
+
+.star-left {
+  left: 14px;
+}
+
+.star-right {
+  right: 14px;
+  animation-delay: 0.8s;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { transform: translateY(-50%) scale(0.7) rotate(0deg); opacity: 0.35; }
+  50% { transform: translateY(-50%) scale(1.25) rotate(45deg); opacity: 1; }
+}
+
+/* Núcleo Reactor Cyberpunk con anillos giratorios */
+.intro-reactor-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 165px;
+  height: 165px;
+}
+
+.reactor-outer-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 165, 0, 0.45);
+  box-shadow: 0 0 16px rgba(255, 165, 0, 0.25), inset 0 0 16px rgba(120, 6, 6, 0.35);
+  animation: reactorSpin 16s linear infinite;
+}
+
+.reactor-inner-ring {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(120, 6, 6, 0.65);
+  border-top-color: var(--color-orange);
+  border-bottom-color: var(--color-orange);
+  animation: reactorSpinReverse 8s linear infinite;
+}
+
+@keyframes reactorSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes reactorSpinReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.reactor-pulse-glow {
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.38) 0%, rgba(120, 6, 6, 0.25) 50%, transparent 75%);
+  animation: pulseGlow 1.4s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.45; }
+  100% { transform: scale(1.18); opacity: 0.9; }
+}
+
+.intro-brand-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Insignia <KM/> con rebote elástico Rubber-Hose Años 30 */
+.intro-brand-pill {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: clamp(1.75rem, 5.5vw, 2.3rem);
+  font-weight: 900;
+  color: var(--color-orange);
+  background: #08070c;
+  border: 2.5px solid var(--color-orange);
+  padding: 0.55rem 1.45rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 0px var(--color-red), 0 0 24px rgba(255, 165, 0, 0.5);
+  animation: rubberBounce 1.2s infinite ease-in-out;
+  letter-spacing: 1px;
+}
+
+.intro-brand-pill .intro-bracket,
+.intro-brand-pill .intro-accent {
+  color: #d61313;
+  font-weight: 900;
+}
+
+.intro-brand-pill .intro-letters {
+  color: var(--color-orange);
+  text-shadow: 0 0 14px rgba(255, 165, 0, 0.65);
+}
+
+@keyframes rubberBounce {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  35% { transform: translateY(-7px) scale(1.04, 0.96); }
+  65% { transform: translateY(3px) scale(0.97, 1.03); }
+}
+
+/* Único texto permitido: PORTFOLIO PERSONAL */
+.intro-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-tag-pill {
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  background: rgba(120, 6, 6, 0.45);
+  border: 1.5px solid var(--color-orange);
+  padding: 0.45rem 1.15rem;
+  border-radius: 999px;
+  box-shadow: 0 3px 0px var(--color-red), 0 0 16px rgba(255, 165, 0, 0.35);
+  animation: tagPulse 2s infinite alternate ease-in-out;
+  text-align: center;
+}
+
+@keyframes tagPulse {
+  0% { transform: scale(0.98); box-shadow: 0 3px 0px var(--color-red), 0 0 12px rgba(255, 165, 0, 0.25); }
+  100% { transform: scale(1.02); box-shadow: 0 3px 0px var(--color-red), 0 0 22px rgba(255, 165, 0, 0.55); }
+}
+
+/* Barra de carga cibernética estilizada con cabeza luminosa */
+.intro-progress-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.intro-progress-track {
+  position: relative;
+  width: 100%;
+  height: 9px;
+  background: rgba(18, 14, 24, 0.95);
+  border: 1.5px solid var(--color-red);
+  border-radius: 999px;
+  overflow: visible;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.85), 0 0 12px rgba(120, 6, 6, 0.35);
+}
+
+.intro-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #780606 0%, #FFA500 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 12px var(--color-orange);
+  transition: width 0.1s linear;
+}
+
+.intro-progress-glow-head {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--color-orange);
+  box-shadow: 0 0 14px var(--color-orange), 0 0 24px rgba(255, 165, 0, 0.85);
+  transition: left 0.1s linear;
+  pointer-events: none;
+}
+
+.intro-pct-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.intro-status-pct {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 2px 0px #000000;
+  padding: 0.2rem 0.8rem;
+  background: rgba(14, 10, 18, 0.85);
+  border: 1px solid rgba(255, 165, 0, 0.4);
+  border-radius: 999px;
+  box-shadow: 0 2px 0px #000000;
+}
+
+/* ==========================================================================
+   1. CAPAS DEL FONDO ANIMADO (CYBERPUNK + RUBBER HOSE AÑOS 30)
+   ========================================================================== */
+.rubber-stage-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(120, 6, 6, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 15% 80%, rgba(255, 165, 0, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(120, 6, 6, 0.14) 0%, transparent 45%),
+    #040406;
+}
+
+#bg-canvas,
+.interactive-bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+
+/* Textura sutil de película años 30 y viñeta con sombra profunda */
+.cyber-scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.2) 0px,
+    rgba(0, 0, 0, 0.2) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.cyber-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 110px rgba(0, 0, 0, 0.92),
+    inset 0 0 35px rgba(120, 6, 6, 0.25);
+}
+
+.cuphead-film-grain,
+.cuphead-dust-scratches {
+  display: none; /* El canvas ya renderiza el grano y destellos años 30 con mejor rendimiento */
+}
+
+/* ==========================================================================
+   2. NAVBAR FIJO COMBINADO CON EL FONDO ANIMADO (CYBERPUNK + AÑOS 30)
+   ========================================================================== */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 1000;
+  background: rgba(7, 6, 10, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--color-orange);
+  box-shadow:
+    0 4px 0px var(--color-red),
+    0 6px 22px rgba(120, 6, 6, 0.42),
+    0 16px 40px rgba(0, 0, 0, 0.98);
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+.navbar-wrapper.navbar-hidden {
+  transform: translateY(-115%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Línea decorativa estilo manguera/circuito en la parte superior del navbar */
+.navbar-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-red) 0px,
+    var(--color-red) 28px,
+    var(--color-orange) 28px,
+    var(--color-orange) 42px
+  );
+}
+
+.navbar {
+  width: min(94%, 1100px);
+  max-width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Logo <KM/> en Naranja (#FFA500) con corchetes rojos (#780606) y sombra estilo Cuphead/Cyberpunk */
+.nav-brand {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  background: rgba(12, 10, 15, 0.95);
+  border: 2px solid var(--color-orange);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px; /* Cápsula años 30 Rubber Hose */
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 3px 0px var(--color-red), 0 0 14px rgba(255, 165, 0, 0.3), 0 6px 16px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 8px rgba(255, 165, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-brand .brand-bracket,
+.nav-brand .brand-accent {
+  color: #c91414;
+  font-weight: 900;
+}
+
+.nav-brand .brand-letters {
+  color: var(--color-orange);
+  letter-spacing: 0.5px;
+}
+
+.nav-brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0px var(--color-red), 0 0 22px rgba(255, 165, 0, 0.45);
+}
+
+/* Botón Hamburguesa Mobile-First */
+.mobile-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: rgba(12, 10, 15, 0.95);
+  border: 2px solid var(--color-orange);
+  border-radius: 10px;
+  box-shadow: 0 3px 0px var(--color-red), 0 0 12px rgba(120, 6, 6, 0.3), 0 6px 14px rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-toggle .bar {
+  width: 21px;
+  height: 2.5px;
+  background-color: var(--color-orange);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.mobile-toggle.open .bar:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+.mobile-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.mobile-toggle.open .bar:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* Menú de enlaces (Mobile-First desplegable, Desktop horizontal) */
+.nav-links {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background: rgba(8, 7, 12, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 3px solid var(--color-red);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.96);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.35rem 1.25rem;
+  gap: 0.7rem;
+  transform: translateY(-130%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+
+.nav-links.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-links li {
+  width: 100%;
+  max-width: 260px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-item {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background: rgba(18, 14, 20, 0.85);
+  border: 1.5px solid rgba(120, 6, 6, 0.75);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 0px #000000;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #050507;
+  background: var(--color-orange);
+  border-color: var(--color-red);
+  box-shadow: 0 3px 0px var(--color-red), 0 0 12px rgba(255, 165, 0, 0.45);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   3. CONTENEDOR COMPACTO Y ESPACIADO PARA LUCIR EL FONDO ANIMADO
+   ========================================================================== */
+.content-container {
+  position: relative;
+  z-index: 3;
+  /* Ancho amplio (1100px) para que las cards de educación y habilidades sean más anchas y simétricas */
+  width: min(94%, 1100px);
+  margin: 0 auto;
+  padding-top: calc(var(--nav-height) + 2.8rem);
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+}
+
+.section {
+  width: 100%;
+  scroll-margin-top: calc(var(--nav-height) + 26px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Encabezado de cada sección 100% simétrico */
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2.4rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(8, 7, 12, 0.78);
+  backdrop-filter: blur(6px);
+  border: 1.5px solid rgba(120, 6, 6, 0.7);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 0px var(--color-red), 0 0 24px rgba(120, 6, 6, 0.35), 0 12px 30px rgba(0, 0, 0, 0.92);
+}
+
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  background: rgba(120, 6, 6, 0.38);
+  border: 1px solid var(--color-orange);
+  padding: 0.28rem 0.85rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 0px #000000;
+}
+
+.section-title {
+  font-size: clamp(1.55rem, 4.2vw, 2.15rem);
+  font-weight: 800;
+  color: var(--color-orange);
+  text-transform: uppercase;
+  letter-spacing: -0.3px;
+  text-shadow: 3px 3px 0px var(--color-red), 0 4px 14px rgba(0, 0, 0, 0.95);
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  max-width: 560px;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   4. ESTILO BASE DE CARDS (FONDO NEGRO CONSERVADO + SOMBRAS + SIMETRÍA)
+   ========================================================================== */
+.neo-box,
+.cyber-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid var(--color-red-bright);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.neo-box:hover,
+.cyber-card:hover {
+  border-color: var(--color-orange);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   5. SECCIÓN 1: HERO / PRESENTACIÓN (SIMÉTRICA Y COMPACTA)
+   ========================================================================== */
+.hero-card {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Animación de entrada y prioridad a la presentación */
+.hero-card.hero-spotlight {
+  animation: heroEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroEntrance {
+  0% {
+    transform: translateY(22px) scale(0.97);
+    box-shadow: 0 4px 0px var(--color-red), 0 0 10px rgba(120, 6, 6, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 0px var(--color-orange), 0 0 45px rgba(255, 165, 0, 0.55), 0 0 75px rgba(120, 6, 6, 0.45);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+.hero-banner-strip {
+  width: 100%;
+  background: linear-gradient(90deg, #4a0404 0%, #780606 50%, #4a0404 100%);
+  border-bottom: 2px solid var(--color-orange);
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  background: rgba(8, 7, 12, 0.92);
+  border: 1.5px solid var(--color-orange);
+  padding: 0.32rem 0.9rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 0px #000000;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  box-shadow: 0 0 8px var(--color-orange);
+  animation: pulseDot 1.8s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+.hero-body {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.1rem;
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-text);
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+}
+
+/* Nombre "Kevin Martínez" en Naranja sin fondo blanco */
+.highlight-text-orange {
+  color: var(--color-orange);
+  background: transparent;
+  border-bottom: 3px solid var(--color-red-bright);
+  padding: 0 0.15rem;
+  text-shadow: 3px 3px 0px var(--color-red), 0 4px 18px rgba(255, 165, 0, 0.3);
+  display: inline-block;
+}
+
+.hero-role-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.84rem, 2.2vw, 0.98rem);
+  font-weight: 700;
+  color: var(--color-orange);
+  background: rgba(120, 6, 6, 0.28);
+  border: 1px solid rgba(255, 165, 0, 0.45);
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 0px #000000, 0 0 12px rgba(120, 6, 6, 0.25);
+}
+
+.role-divider {
+  color: var(--color-red-bright);
+  margin: 0 0.35rem;
+}
+
+.hero-intro {
+  font-size: 0.93rem;
+  color: var(--color-text);
+  max-width: 650px;
+  line-height: 1.68;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 520px;
+  margin-top: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   6. BOTONES SIMÉTRICOS CON SOMBRAS
+   ========================================================================== */
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.72rem 1.25rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--color-orange);
+  color: #050507;
+  border: 2px solid #050507;
+  box-shadow: 0 3px 0px var(--color-red), 0 0 16px rgba(255, 165, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.85);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0px var(--color-red), 0 0 24px rgba(255, 165, 0, 0.45), 0 8px 22px rgba(0, 0, 0, 0.95);
+}
+
+.btn-secondary {
+  background: var(--color-red);
+  color: var(--color-orange);
+  border: 2px solid var(--color-orange);
+  box-shadow: 0 3px 0px #000000, 0 0 16px rgba(120, 6, 6, 0.4), 0 6px 18px rgba(0, 0, 0, 0.85);
+}
+
+.btn-secondary:hover {
+  background: var(--color-red-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0px var(--color-orange), 0 0 24px rgba(255, 165, 0, 0.45), 0 8px 22px rgba(0, 0, 0, 0.95);
+}
+
+.btn-outline-cyber {
+  background: rgba(14, 12, 18, 0.92);
+  color: var(--color-orange);
+  border: 2px solid var(--color-red-bright);
+  box-shadow: 0 3px 0px var(--color-red), 0 0 14px rgba(120, 6, 6, 0.35), 0 6px 16px rgba(0, 0, 0, 0.85);
+}
+
+.btn-outline-cyber:hover {
+  border-color: var(--color-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0px var(--color-orange), 0 0 20px rgba(255, 165, 0, 0.4);
+}
+
+.btn-small {
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   7. GRILLAS DE EXPERIENCIA, EDUCACIÓN Y HABILIDADES (ESPACIADAS Y SIMÉTRICAS)
+   ========================================================================== */
+.skills-grid,
+.education-grid,
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.85rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.skill-card,
+.edu-card {
+  padding: 1.45rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+  gap: 0.85rem;
+  height: 100%;
+}
+
+.skill-card-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding-bottom: 0.85rem;
+  border-bottom: 1.5px solid rgba(120, 6, 6, 0.55);
+}
+
+.card-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  letter-spacing: 0.6px;
+  white-space: nowrap; /* Evita que se parta en varios renglones */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-orange {
+  background: var(--color-orange);
+  color: #050507;
+  border: 1.5px solid var(--color-red);
+  box-shadow: 0 2px 0px var(--color-red);
+}
+
+.badge-red {
+  background: var(--color-red);
+  color: var(--color-orange);
+  border: 1.5px solid var(--color-orange);
+  box-shadow: 0 2px 0px #000000;
+}
+
+.skill-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(120, 6, 6, 0.35);
+  border: 1.5px solid var(--color-orange);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 0px #000000, 0 0 10px rgba(120, 6, 6, 0.3);
+  flex-shrink: 0;
+}
+
+.skill-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.skill-title,
+.edu-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  line-height: 1.35;
+  text-align: center;
+  width: 100%;
+}
+
+.exp-meta,
+.edu-institution {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  width: 100%;
+}
+
+.edu-status {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-orange);
+  background: rgba(120, 6, 6, 0.28);
+  border: 1.5px solid rgba(255, 165, 0, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 2px 0px #000000, 0 0 10px rgba(120, 6, 6, 0.25), 0 3px 8px rgba(0, 0, 0, 0.7);
+  padding: 0.4rem 0.8rem;
+  margin-top: auto;
+}
+
+.skill-description {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  line-height: 1.65;
+  text-align: center;
+  width: 100%;
+}
+
+.cyber-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--color-text);
+}
+
+.cyber-list li {
+  background: var(--bg-card-inner);
+  border: 1px solid rgba(120, 6, 6, 0.5);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  box-shadow: 0 2px 0px #000000, 0 0 8px rgba(120, 6, 6, 0.2), 0 3px 6px rgba(0, 0, 0, 0.65);
+}
+
+.skill-tags {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem 0.75rem;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.tech-chip {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background: var(--bg-card-inner);
+  border: 1.5px solid rgba(255, 165, 0, 0.55);
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 0px var(--color-red), 0 0 10px rgba(120, 6, 6, 0.28), 0 3px 8px rgba(0, 0, 0, 0.75);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  line-height: 1.25;
+  white-space: normal;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tech-chip:hover {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+  box-shadow: 0 2px 0px var(--color-orange), 0 0 16px rgba(255, 165, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.85);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   8. SECCIÓN 5: PROYECTOS (ROJO #780606 EN LUGAR DE BLANCO + SOMBRAS)
+   ========================================================================== */
+.project-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Encabezado de las cards de proyectos en ROJO (#780606) con sombras */
+.project-card-header {
+  background: linear-gradient(135deg, #780606 0%, #480303 100%);
+  border-bottom: 2px solid var(--color-orange);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  box-shadow: inset 0 -4px 12px rgba(0, 0, 0, 0.65);
+}
+
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  background: rgba(8, 7, 12, 0.9);
+  border: 1.5px solid var(--color-orange);
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.8px;
+  box-shadow: 0 2px 0px #000000;
+}
+
+.project-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #08070c;
+  border: 2px solid var(--color-orange);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 0px #000000;
+}
+
+/* Mockup visual de ventana retro-cyberpunk para proyectos */
+.project-mockup-frame {
+  width: calc(100% - 2.5rem);
+  margin: 1.15rem 1.25rem 0.25rem 1.25rem;
+  background: #08060a;
+  border: 1.5px solid rgba(255, 165, 0, 0.45);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 0px #000000, 0 0 16px rgba(120, 6, 6, 0.28), 0 8px 18px rgba(0, 0, 0, 0.85);
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.project-card:hover .project-mockup-frame {
+  border-color: var(--color-orange);
+  transform: translateY(-2px);
+}
+
+.mockup-header-bar {
+  background: rgba(18, 14, 24, 0.95);
+  border-bottom: 1px solid rgba(120, 6, 6, 0.75);
+  padding: 0.4rem 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mockup-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dot-red { background: #e63946; }
+.dot-yellow { background: #ffb703; }
+.dot-green { background: #2a9d8f; }
+
+.mockup-url {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-orange);
+  margin-left: 0.35rem;
+  background: rgba(8, 6, 12, 0.85);
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 165, 0, 0.25);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  text-align: left;
+}
+
+.mockup-screen {
+  padding: 0.95rem 1rem;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, rgba(120, 6, 6, 0.22) 0%, #060509 100%);
+}
+
+.screen-pochoclon {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.14) 0%, #060509 100%);
+}
+
+.screen-preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.mini-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mini-dot-live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  box-shadow: 0 0 6px var(--color-orange);
+  flex-shrink: 0;
+}
+
+.mini-dot-live.gold {
+  background: #ffb703;
+  box-shadow: 0 0 6px #ffb703;
+}
+
+.mini-screen-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  letter-spacing: 0.6px;
+}
+
+.mini-screen-tag.gold {
+  color: #ffb703;
+}
+
+.mini-screen-hero {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  background: rgba(16, 12, 22, 0.75);
+  border-radius: 6px;
+  border: 1px solid rgba(120, 6, 6, 0.45);
+}
+
+.mini-avatar-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(120, 6, 6, 0.55);
+  border: 1px solid var(--color-orange);
+  color: var(--color-orange);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mini-avatar-box.gold {
+  background: rgba(255, 165, 0, 0.2);
+  border-color: #ffb703;
+  font-size: 0.95rem;
+}
+
+.mini-text-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  flex: 1;
+}
+
+.line {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 165, 0, 0.4);
+}
+
+.line.gold {
+  background: rgba(255, 183, 3, 0.45);
+}
+
+.line-lg { width: 85%; }
+.line-md { width: 60%; }
+.line-sm { width: 40%; }
+
+.mini-chips-grid {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.mini-chips-grid span {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background: rgba(25, 20, 32, 0.85);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.mini-chips-grid.gold span {
+  border-color: rgba(255, 183, 3, 0.35);
+  color: #ffb703;
+}
+
+.project-card-body {
+  padding: 1.25rem 1.35rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.project-title {
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  text-shadow: 2px 2px 0px var(--color-red);
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.project-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* Etiquetas de proyectos en ROJO (#780606) con letras naranjas y sombra */
+.mini-cyber-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  background: var(--color-red);
+  border: 1px solid rgba(255, 165, 0, 0.65);
+  padding: 0.26rem 0.68rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 0px #000000, 0 2px 8px rgba(0, 0, 0, 0.75);
+}
+
+.project-card-action {
+  padding: 0 1.35rem 1.45rem;
+  width: 100%;
+}
+
+/* Acciones dobles simétricas de proyectos */
+.project-actions-dual {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+@media (min-width: 480px) {
+  .project-actions-dual {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.project-actions-dual .btn {
+  width: 100%;
+  font-size: 0.78rem;
+  padding: 0.58rem 0.85rem;
+}
+
+/* Acciones de contacto con botón copiar */
+.contact-actions-dual {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+  width: 100%;
+  align-items: center;
+}
+
+.btn-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  min-width: 95px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-copy.copied {
+  background: #1b8a5a !important;
+  color: #ffffff !important;
+  border-color: #27ae60 !important;
+  box-shadow: 0 3px 0px #0f5235, 0 0 16px rgba(39, 174, 96, 0.55) !important;
+}
+
+/* ==========================================================================
+   9. SECCIÓN 6: CONTACTO (CV A LA IZQUIERDA | "BERISSO, BUENOS AIRES" NARANJA A LA DERECHA)
+   ========================================================================== */
+.contact-card {
+  width: 100%;
+  padding: 1.75rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.contact-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 2px solid rgba(120, 6, 6, 0.65);
+}
+
+.contact-header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 580px;
+}
+
+/* Barra con botones CV a la izquierda y "Berisso, Buenos Aires" en naranja a la derecha */
+.contact-header-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  background: var(--bg-card-inner);
+  border: 1.5px solid rgba(120, 6, 6, 0.7);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  box-shadow: 0 3px 0px #000000, 0 0 16px rgba(120, 6, 6, 0.3), 0 8px 20px rgba(0, 0, 0, 0.85);
+}
+
+.cv-action-btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.cv-btn {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  background: var(--color-red);
+  border: 2px solid var(--color-orange);
+  padding: 0.55rem 0.95rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  box-shadow: 0 3px 0px #000000, 0 0 12px rgba(120, 6, 6, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cv-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0px var(--color-orange), 0 0 18px rgba(255, 165, 0, 0.4);
+}
+
+.cv-btn-tooltip {
+  font-size: 0.78rem;
+}
+
+/* "Berisso, Buenos Aires" en color NARANJA (#FFA500) y a la derecha */
+.location-badge,
+.contact-location-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #050507;
+  background: var(--color-orange);
+  border: 2px solid var(--color-red);
+  padding: 0.55rem 1.05rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 0px var(--color-red), 0 0 14px rgba(255, 165, 0, 0.35), 0 6px 16px rgba(0, 0, 0, 0.85);
+}
+
+.icon-pin {
+  color: var(--color-red);
+  flex-shrink: 0;
+}
+
+/* Grilla simétrica de tarjetas de contacto */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.35rem;
+  width: 100%;
+}
+
+.contact-method-card {
+  background: var(--bg-card-inner);
+  border: 1.5px solid rgba(163, 11, 11, 0.75);
+  border-radius: 12px;
+  padding: 1.25rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow:
+    0 3px 0px var(--color-red),
+    0 0 16px rgba(120, 6, 6, 0.28),
+    0 10px 24px rgba(0, 0, 0, 0.9);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-method-card:hover {
+  border-color: var(--color-orange);
+  box-shadow:
+    0 3px 0px var(--color-orange),
+    0 0 24px rgba(255, 165, 0, 0.35),
+    0 14px 28px rgba(0, 0, 0, 0.95);
+  transform: translateY(-2px);
+}
+
+.contact-method-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.method-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.method-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  letter-spacing: 0.8px;
+}
+
+.method-value {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.method-icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(120, 6, 6, 0.4);
+  border: 1.5px solid var(--color-orange);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 0px #000000;
+}
+
+.method-actions {
+  width: 100%;
+}
+
+/* ==========================================================================
+   10. FOOTER SIMÉTRICO Y COMPACTO (MOBILE-FIRST)
+   ========================================================================== */
+.footer {
+  position: relative;
+  z-index: 3;
+  background: rgba(7, 6, 10, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1.5px solid var(--color-red);
+  padding: 0.85rem 1rem;
+  box-shadow: 0 -3px 0px var(--color-red), 0 0 22px rgba(120, 6, 6, 0.35), 0 -8px 24px rgba(0, 0, 0, 0.94);
+}
+
+.footer-container {
+  width: min(94%, 1100px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.35rem;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyright {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-orange);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.brand-desc {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* ==========================================================================
+   11. MEDIA QUERIES (TABLET & DESKTOP — SIMETRÍA PERFECTA)
+   ========================================================================== */
+@media (min-width: 680px) {
+  .hero-cta-group {
+    flex-direction: row;
+  }
+
+  .skills-grid,
+  .projects-grid,
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.85rem;
+  }
+
+  /* Simetría para las tarjetas de Experiencia y Habilidades en 2 columnas */
+  .skills-section .skill-title,
+  .experience-section .skill-title {
+    min-height: 2.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .experience-section .exp-meta {
+    min-height: 1.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .skills-section .skill-description {
+    min-height: 3.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Simetría para las tarjetas de Proyectos */
+  .project-title {
+    min-height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-desc {
+    min-height: 3.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Botones CV a la izquierda y "Berisso, Buenos Aires" en naranja a la derecha */
+  .contact-header-right {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  /* Footer simétrico y compacto en tablet y escritorio */
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .footer-left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .footer-right {
+    justify-content: flex-end;
+    text-align: right;
+  }
+}
+
+@media (min-width: 900px) {
+  .mobile-toggle {
+    display: none;
+  }
+
+  /* Navbar simétrico alineado al ancho total de las cards (1100px) y botones más a la derecha */
+  .navbar {
+    width: min(94%, 1100px);
+    max-width: 1100px;
+    padding: 0;
+  }
+
+  .nav-links {
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+    flex-direction: row;
+    padding: 0;
+    gap: 0.65rem;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    width: auto;
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+  .nav-links li {
+    width: auto;
+    max-width: none;
+  }
+
+  .nav-item {
+    width: auto;
+    font-size: 0.78rem;
+    padding: 0.42rem 0.85rem;
+  }
+
+  /* Las 3 cards de Educación en 3 columnas simétricas iguales y más anchas */
+  .education-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.65rem;
+  }
+
+  .edu-title {
+    min-height: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .edu-institution {
+    min-height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .edu-status {
+    min-height: 52px;
+  }
+}
