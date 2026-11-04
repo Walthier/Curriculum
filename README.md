@@ -1,8 +1,18 @@
 # <KM/> — Kevin Martínez | Portfolio Personal
 
+[![Web en Vivo](https://img.shields.io/badge/Sitio_en_Vivo-GitHub_Pages-ff8800?style=for-the-badge&logo=github)](https://walthier.github.io/PortFolio/)
+[![GitHub Repo](https://img.shields.io/badge/Repositorio-GitHub-222?style=for-the-badge&logo=github)](https://github.com/Walthier/PortFolio)
+
 Portfolio profesional y personal de **Kevin Martínez** — Técnico en Soporte IT y Desarrollador Web Junior con asistencia de Inteligencia Artificial (IA) en Berisso, Buenos Aires.
 
 Diseñado con una estética única que fusiona el estilo **Cyberpunk / Terminal** con los dibujos animados clásicos de los **años 30 (*Cuphead / Rubber-Hose*)**, con enfoque 100% simétrico y Mobile-First.
+
+---
+
+## 🌐 Enlace Directo
+
+- **Portfolio en vivo:** 👉 [https://walthier.github.io/PortFolio/](https://walthier.github.io/PortFolio/)
+- **CV digital interactivo:** 👉 [https://walthier.github.io/PortFolio/cv.html](https://walthier.github.io/PortFolio/cv.html)
 
 ---
 
@@ -10,14 +20,14 @@ Diseñado con una estética única que fusiona el estilo **Cyberpunk / Terminal*
 
 - **Frontend:** HTML5 semántico, CSS3 moderno (Custom Properties, Flexbox, CSS Grid, animaciones y sombras).
 - **Interactividad:** JavaScript (ES6+), Canvas 2D interactivo con partículas reactivas al cursor y gestos táctiles.
-- **Herramientas & Bundler:** [Vite 6](https://vitejs.dev/) para compilación y desarrollo ultrarrápido.
-- **Despliegue Continuo (CI/CD):** GitHub Actions con despliegue automatizado a GitHub Pages al actualizar `main`.
+- **Herramientas & Bundler:** [Vite 6](https://vitejs.dev/) para desarrollo ultrarrápido y empaquetado optimizado.
+- **Alojamiento:** GitHub Pages (rama `gh-pages`) con enlace permanente HTTPS.
 
 ---
 
 ## 🛠️ Cómo Iniciar en Local
 
-### Opción 1: Con el lanzador directo (Windows)
+### Opción 1: Lanzador directo (Windows)
 Hacer doble clic en `iniciar.bat` en la raíz del proyecto. Iniciará el servidor de desarrollo en `http://localhost:5173` y abrirá el navegador automáticamente.
 
 ### Opción 2: Desde la terminal
@@ -31,6 +41,15 @@ npm run dev
 # 3. Compilar para producción
 npm run build
 ```
+
+---
+
+## 🔄 Cómo Actualizar el Portfolio
+
+### Desde tu computadora (Doble clic)
+1. Modifica los archivos que desees en tu carpeta de proyecto.
+2. Haz doble clic en `publicar.bat`.
+3. El script automáticamente subirá tus cambios a GitHub (`main`) y publicará la nueva versión compilada en vivo en GitHub Pages (`gh-pages`).
 
 ---
 
