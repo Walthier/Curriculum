@@ -1,5 +1,5 @@
 @echo off
-title Actualizar y Publicar Portfolio en GitHub
+title Actualizar y Publicar Curriculum en GitHub
 cd /d "%~dp0"
 
 echo ========================================================
@@ -7,8 +7,8 @@ echo   PUBLICADOR AUTOMATICO A GITHUB - KEVIN MARTINEZ
 echo ========================================================
 echo.
 
-set /p msg="Ingresa una descripcion del cambio (presiona Enter para 'Actualizar portfolio'): "
-if "%msg%"=="" set msg=Actualizar portfolio
+set /p msg="Ingresa una descripcion del cambio (presiona Enter para 'Actualizar curriculum'): "
+if "%msg%"=="" set msg=Actualizar curriculum
 
 echo.
 echo [1/4] Guardando cambios en Git (rama main)...
@@ -29,7 +29,7 @@ git init >nul 2>&1
 git checkout -b gh-pages >nul 2>&1
 git add -A >nul 2>&1
 git commit -m "Publicacion: %msg%" >nul 2>&1
-git remote add origin https://github.com/Walthier/PortFolio.git >nul 2>&1
+git remote add origin https://github.com/Walthier/Curriculum.git >nul 2>&1
 git push -u origin gh-pages --force
 cd ..
 
@@ -39,9 +39,9 @@ rmdir /s /q dist
 
 echo.
 echo ========================================================
-echo   EXITO: Tu portfolio esta actualizado en GitHub y en vivo!
-echo   Web en vivo: https://walthier.github.io/PortFolio/
-echo   Repositorio: https://github.com/Walthier/PortFolio
+echo   EXITO: Tu curriculum esta actualizado en GitHub y en vivo!
+echo   Web en vivo: https://walthier.github.io/Curriculum/
+echo   Repositorio: https://github.com/Walthier/Curriculum
 echo ========================================================
 echo.
 pause

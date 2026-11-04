@@ -1,18 +1,18 @@
-# <KM/> — Kevin Martínez | Portfolio Personal
+# <KM/> — Kevin Martínez | Curriculum Vitae & Portfolio
 
-[![Web en Vivo](https://img.shields.io/badge/Sitio_en_Vivo-GitHub_Pages-ff8800?style=for-the-badge&logo=github)](https://walthier.github.io/PortFolio/)
-[![GitHub Repo](https://img.shields.io/badge/Repositorio-GitHub-222?style=for-the-badge&logo=github)](https://github.com/Walthier/PortFolio)
+[![Web en Vivo](https://img.shields.io/badge/Sitio_en_Vivo-GitHub_Pages-ff8800?style=for-the-badge&logo=github)](https://walthier.github.io/Curriculum/)
+[![GitHub Repo](https://img.shields.io/badge/Repositorio-GitHub-222?style=for-the-badge&logo=github)](https://github.com/Walthier/Curriculum)
 
-Portfolio profesional y personal de **Kevin Martínez** — Técnico en Soporte IT y Desarrollador Web Junior con asistencia de Inteligencia Artificial (IA) en Berisso, Buenos Aires.
+Curriculum Vitae y Portfolio personal interactivo de **Kevin Martínez** — Técnico en Soporte IT y Desarrollador Web Junior con asistencia de Inteligencia Artificial (IA) en Berisso, Buenos Aires.
 
 Diseñado con una estética única que fusiona el estilo **Cyberpunk / Terminal** con los dibujos animados clásicos de los **años 30 (*Cuphead / Rubber-Hose*)**, con enfoque 100% simétrico y Mobile-First.
 
 ---
 
-## 🌐 Enlace Directo
+## 🌐 Enlaces Oficiales
 
-- **Portfolio en vivo:** 👉 [https://walthier.github.io/PortFolio/](https://walthier.github.io/PortFolio/)
-- **CV digital interactivo:** 👉 [https://walthier.github.io/PortFolio/cv.html](https://walthier.github.io/PortFolio/cv.html)
+- 🔗 **Curriculum Vitae digital interactivo:** 👉 [https://walthier.github.io/Curriculum/cv.html](https://walthier.github.io/Curriculum/cv.html)
+- 💻 **Portfolio principal interactivo:** 👉 [https://walthier.github.io/Curriculum/](https://walthier.github.io/Curriculum/)
 
 ---
 
@@ -44,7 +44,7 @@ npm run build
 
 ---
 
-## 🔄 Cómo Actualizar el Portfolio
+## 🔄 Cómo Actualizar tu Curriculum / Portfolio
 
 ### Desde tu computadora (Doble clic)
 1. Modifica los archivos que desees en tu carpeta de proyecto.
@@ -55,8 +55,8 @@ npm run build
 
 ## 📄 Páginas Incluidas
 
-- `index.html` — Portfolio principal interactivo (Presentación, Trayectoria, Formación, Habilidades, Proyectos y Contacto).
 - `cv.html` — Currículum Vitae digital con selector de Modo Cyberpunk / Modo Hoja Blanca y botón de impresión / guardado directo a PDF (`window.print()`).
+- `index.html` — Portfolio principal interactivo (Presentación, Trayectoria, Formación, Habilidades, Proyectos y Contacto).
 - `pagina-ia.html` — Demo de práctica "Don Pochoclón" (Landing page responsive asistida con IA).
 
 ---
