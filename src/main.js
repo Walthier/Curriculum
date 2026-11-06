@@ -21,7 +21,7 @@
 
   if (introSplash) {
     document.body.classList.add('splash-active');
-    const duration = 1400; // 1.4 segundos de mini animación
+    const duration = 2800; // 2.8 segundos para apreciar la animación completa de carga
     const startTime = performance.now();
     let closed = false;
 
@@ -36,7 +36,10 @@
       if (elapsed < duration) {
         requestAnimationFrame(step);
       } else {
-        closeSplash();
+        if (progressFill) progressFill.style.width = '100%';
+        if (progressHead) progressHead.style.left = '100%';
+        if (statusPct) statusPct.textContent = '100%';
+        setTimeout(closeSplash, 180);
       }
     }
 
