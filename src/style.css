@@ -1337,6 +1337,10 @@ body.splash-active {
   background: radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.14) 0%, #060509 100%);
 }
 
+.screen-wm {
+  background: radial-gradient(circle at 50% 50%, rgba(120, 6, 6, 0.35) 0%, #060509 100%);
+}
+
 .screen-preview-content {
   display: flex;
   flex-direction: column;
@@ -1387,15 +1391,17 @@ body.splash-active {
 }
 
 .mini-avatar-box {
-  width: 32px;
+  min-width: 36px;
   height: 32px;
+  padding: 0 4px;
   border-radius: 6px;
   background: rgba(120, 6, 6, 0.55);
   border: 1px solid var(--color-orange);
   color: var(--color-orange);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 900;
+  letter-spacing: -0.5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1649,11 +1655,11 @@ body.splash-active {
   flex-shrink: 0;
 }
 
-/* Grilla simétrica de tarjetas de contacto */
+/* Grilla simétrica de tarjetas de contacto (Mobile-First) */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.35rem;
+  gap: 1.25rem;
   width: 100%;
 }
 
@@ -1665,7 +1671,8 @@ body.splash-active {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.15rem;
+  height: 100%;
   box-shadow:
     0 3px 0px var(--color-red),
     0 0 16px rgba(120, 6, 6, 0.28),
@@ -1684,7 +1691,7 @@ body.splash-active {
 
 .contact-method-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
 }
@@ -1694,8 +1701,9 @@ body.splash-active {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 0.2rem;
+  gap: 0.3rem;
   min-width: 0;
+  flex: 1;
 }
 
 .method-label {
@@ -1710,7 +1718,8 @@ body.splash-active {
   font-size: 0.84rem;
   font-weight: 600;
   color: var(--color-text);
-  word-break: break-word;
+  word-break: break-all;
+  line-height: 1.35;
 }
 
 .method-icon-circle {
@@ -1729,6 +1738,16 @@ body.splash-active {
 
 .method-actions {
   width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.method-actions > .btn {
+  width: 100%;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ==========================================================================
@@ -1789,8 +1808,7 @@ body.splash-active {
   }
 
   .skills-grid,
-  .projects-grid,
-  .contact-grid {
+  .projects-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.85rem;
   }
@@ -1924,5 +1942,17 @@ body.splash-active {
 
   .edu-status {
     min-height: 52px;
+  }
+
+  /* Las 3 cards de Contacto en 3 columnas simétricas iguales y alineadas */
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .method-value {
+    min-height: 2.4rem;
+    display: flex;
+    align-items: center;
   }
 }
