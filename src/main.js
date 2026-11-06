@@ -21,7 +21,7 @@
 
   if (introSplash) {
     document.body.classList.add('splash-active');
-    const duration = 2000; // 2 segundos exactos de animación de carga
+    const duration = 1800; // 1.8 segundos exactos de animación de carga
     const startTime = performance.now();
     let closed = false;
 
