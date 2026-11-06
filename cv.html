@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV – Kevin Martínez</title>
+
+  <!-- Icono Cyberpunk <WM/> igual al Portfolio -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='12,3 52,3 61,12 61,52 52,61 12,61 3,52 3,12' fill='%23000000' stroke='%23FFA500' stroke-width='3.5'/%3E%3Cpolyline points='8,18 8,14 14,8 22,8' fill='none' stroke='%23780606' stroke-width='3'/%3E%3Cpolyline points='56,46 56,50 50,56 42,56' fill='none' stroke='%23FFA500' stroke-width='3'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='16.5' font-weight='900' text-anchor='middle' dominant-baseline='middle'%3E%3Ctspan fill='%23780606'%3E%26lt;%3C/tspan%3E%3Ctspan fill='%23FFA500'%3EWM%3C/tspan%3E%3Ctspan fill='%23780606'%3E/%26gt;%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+  <link rel="alternate icon" href="./assets/favicon-Dav4FRSR.svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0b0b0f;
+      color: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .top-bar {
+      width: 100%;
+      max-width: 820px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      gap: 1rem;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.82rem;
+      color: #FFA500;
+      border: 2px solid #FFA500;
+      background: #14141c;
+      padding: 0.45rem 0.95rem;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 6px;
+      box-shadow: 0 2px 0 #780606;
+      transition: transform 0.15s, background 0.15s;
+    }
+    .back-btn:hover { transform: translateY(-1px); background: #1f1a14; }
+
+    .top-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .top-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.8rem;
+      color: #FFA500;
+      border: 2px solid #780606;
+      background: #14141c;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 2px 0 #000000;
+      transition: transform 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .top-btn:hover {
+      transform: translateY(-1px);
+      background: #241d24;
+      border-color: #FFA500;
+    }
+
+    /* ─── MODO OSCURO CYBERPUNK ─── */
+    body.dark-mode {
+      background: #06050a;
+      color: #eae4da;
+    }
+
+    body.dark-mode .cv-wrapper {
+      background: #0f0d14;
+      border-color: #780606;
+      box-shadow: 0 4px 0 #780606, 0 0 24px rgba(120, 6, 6, 0.35), 0 16px 40px rgba(0, 0, 0, 0.96);
+    }
+
+    body.dark-mode .cv-body {
+      color: #eae4da;
+    }
+
+    body.dark-mode .cv-section-title {
+      color: #FFA500;
+      border-bottom-color: #780606;
+    }
+
+    body.dark-mode .cv-summary p,
+    body.dark-mode .cv-entry-desc ul,
+    body.dark-mode .skill-row {
+      color: #c4bdad;
+    }
+
+    body.dark-mode .cv-entry-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .cv-entry-sub {
+      color: #FFA500;
+    }
+
+    body.dark-mode .cv-entry-right {
+      color: #9e978e;
+    }
+
+    body.dark-mode .print-bar {
+      background: #0f0d14;
+      border-top-color: #780606;
+    }
+
+    /* Impresión limpia garantizada */
+    @media print {
+      body, body.dark-mode {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+      }
+      .top-bar, .print-bar {
+        display: none !important;
+      }
+      .cv-wrapper {
+        border: none !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+        background: #ffffff !important;
+      }
+      .cv-header {
+        background: #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    .cv-wrapper {
+      width: 100%;
+      max-width: 820px;
+      background: #ffffff;
+      border: 3px solid #000000;
+      box-shadow: 6px 6px 0 #FFA500;
+    }
+
+    /* ─── HEADER ─── */
+    .cv-header {
+      background: #000000;
+      color: #ffffff;
+      padding: 2rem 2.5rem;
+      border-bottom: 4px solid #780606;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .cv-name {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+    }
+    .cv-name span { color: #FFA500; }
+    .cv-role {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.9rem;
+      color: #FFA500;
+      font-weight: 600;
+    }
+    .cv-contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      margin-top: 0.6rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.78rem;
+      color: #ddd;
+    }
+    .cv-contact-row a { color: #FFA500; text-decoration: none; }
+    .cv-contact-row a:hover { text-decoration: underline; }
+
+    /* ─── BODY ─── */
+    .cv-body { padding: 2rem 2.5rem; display: flex; flex-direction: column; gap: 1.65rem; }
+
+    .cv-section-title {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #780606;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .cv-summary p {
+      font-size: 0.9rem;
+      line-height: 1.68;
+      color: #222;
+    }
+
+    /* Experience / Education */
+    .cv-entry { margin-bottom: 1.15rem; }
+    .cv-entry:last-child { margin-bottom: 0; }
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cv-entry-title { font-weight: 700; font-size: 0.95rem; color: #000; }
+    .cv-entry-sub {
+      font-size: 0.83rem;
+      color: #444;
+      margin-top: 0.1rem;
+      font-weight: 500;
+    }
+    .cv-entry-right {
+      text-align: right;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.76rem;
+      color: #555;
+      flex-shrink: 0;
+    }
+    .cv-entry-desc {
+      font-size: 0.86rem;
+      color: #333;
+      line-height: 1.6;
+      margin-top: 0.45rem;
+    }
+    .cv-entry-desc ul { padding-left: 1.2rem; }
+    .cv-entry-desc li { margin-bottom: 0.28rem; }
+
+    /* Habilidades */
+    .skills-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      border-left: 3px solid #780606;
+      padding-left: 1rem;
+    }
+    .skill-row {
+      font-size: 0.87rem;
+      line-height: 1.55;
+      color: #222;
+    }
+    .skill-row strong {
+      color: #000;
+      font-weight: 700;
+    }
+
+    /* ─── PRINT BTN ─── */
+    .print-bar {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 2px dashed #ddd;
+      background: #fafafa;
+    }
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: #FFA500;
+      color: #000;
+      border: 2.5px solid #000;
+      box-shadow: 3px 3px 0 #780606;
+      padding: 0.65rem 1.5rem;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .print-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #780606; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .top-bar, .print-bar { display: none !important; }
+      .cv-wrapper { border: none; box-shadow: none; max-width: 100%; }
+    }
+
+    @media (max-width: 600px) {
+      .cv-header { padding: 1.5rem 1.2rem; }
+      .cv-name { font-size: 1.6rem; }
+      .cv-body { padding: 1.5rem 1.2rem; }
+      .cv-entry-right { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="./index.html" class="back-btn">
+      ← Volver al Portfolio
+    </a>
+    <div class="top-bar-actions">
+      <button class="top-btn" id="theme-toggle-btn" aria-label="Cambiar entre modo cyberpunk y modo de lectura claro">
+        <span id="theme-icon">☀️</span> <span id="theme-text">Modo Hoja Blanca</span>
+      </button>
+      <button class="top-btn" onclick="window.print()" aria-label="Imprimir o guardar CV como PDF">
+        <span>🖨️ Imprimir / PDF</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="cv-wrapper">
+
+    <!-- HEADER -->
+    <div class="cv-header">
+      <div class="cv-name">KEVIN <span>MARTÍNEZ</span></div>
+      <div class="cv-role">Soporte Técnico IT &amp; Desarrollo Web Junior | Atención al Usuario</div>
+      <div class="cv-contact-row">
+        <span>📍 Berisso, Buenos Aires</span>
+        <a href="mailto:walthie.white.22@gmail.com">✉️ walthie.white.22@gmail.com</a>
+        <a href="https://walthier.github.io/Curriculum/" target="_blank">🌐 walthier.github.io/Curriculum</a>
+        <a href="https://www.linkedin.com/in/kevin-martinez-9a8bb5446" target="_blank">🔗 linkedin.com/in/kevin-martinez-9a8bb5446</a>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="cv-body">
+
+      <!-- SOBRE MÍ | PERFIL PROFESIONAL -->
+      <div class="cv-section cv-summary">
+        <div class="cv-section-title">Sobre Mí | Perfil Profesional</div>
+        <p>
+          Me desempeño con facilidad en la atención al público, el trabajo en equipo y el soporte técnico. Cuento con formación en Armado y Reparación de PC y actualmente estudio Programación (HTML, CSS y JavaScript), apoyándome en herramientas de Inteligencia Artificial (IA) para crear páginas web interactivas y resolver problemas con rapidez. Mantengo un trato cordial y paciente con los clientes, aprendo rápido el manejo de cualquier sistema y busco sumar compromiso y soluciones prácticas en mi puesto de trabajo.
+        </p>
+      </div>
+
+      <!-- EXPERIENCIA PRÁCTICA Y TÉCNICA -->
+      <div class="cv-section">
+        <div class="cv-section-title">Experiencia Práctica y Técnica</div>
+
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">Diagnóstico, Reparación de PC y Asistencia a Usuarios</div>
+              <div class="cv-entry-sub">Práctica Formativa e Independiente (CFL N° 404)</div>
+            </div>
+            <div class="cv-entry-right">
+              <div>2025 – Presente</div>
+              <div>Berisso, Buenos Aires</div>
+            </div>
+          </div>
+          <div class="cv-entry-desc">
+            <ul>
+              <li>Realicé el armado, diagnóstico de fallas de hardware/software y mantenimiento preventivo de computadoras de escritorio y notebooks.</li>
+              <li>Instalé y configuré sistemas operativos Windows, controladores (drivers) y programas esenciales, dejando los equipos 100% operativos.</li>
+              <li>Expliqué diagnósticos y soluciones técnicas de forma clara y cordial, priorizando la buena atención y la paciencia con cada usuario.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">Práctica en Desarrollo Web (HTML, CSS, JavaScript) y Uso de IA</div>
+              <div class="cv-entry-sub">Prácticas de Programación (CFL N° 404)</div>
+            </div>
+            <div class="cv-entry-right">
+              <div>2026 – Presente</div>
+              <div>Berisso, Buenos Aires</div>
+            </div>
+          </div>
+          <div class="cv-entry-desc">
+            <ul>
+              <li>Desarrollé páginas web adaptables e interactivas combinando HTML5, CSS3 y código JavaScript (JS), agilizando el armado y corrección mediante Inteligencia Artificial (IA).</li>
+              <li>Publiqué proyectos web de prueba en internet a través de GitHub Pages (disponibles en mi portfolio online) aplicando diseño limpio y ordenado.</li>
+              <li>Colaboré junto a compañeros en ejercicios prácticos de programación, compartiendo soluciones y manteniendo un buen clima de trabajo en equipo.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- EDUCACIÓN Y CERTIFICACIONES -->
+      <div class="cv-section">
+        <div class="cv-section-title">Educación y Certificaciones</div>
+
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">Trayecto de Formación Profesional en Programación</div>
+              <div class="cv-entry-sub">Centro de Formación Laboral N° 404 (CFL 404) – cfl404.ar</div>
+            </div>
+            <div class="cv-entry-right">
+              <div>2026 – En curso</div>
+              <div>Berisso, Buenos Aires</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">Certificación en Armado y Reparación de PC</div>
+              <div class="cv-entry-sub">Centro de Formación Laboral N° 404 (CFL 404) – cfl404.ar</div>
+            </div>
+            <div class="cv-entry-right">
+              <div>Finalizado en 2026</div>
+              <div>Aprobado (Certificado oficial en trámite)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">Educación Secundaria Completa (Bachiller)</div>
+              <div class="cv-entry-sub">E.E.S. N° 1 "Raúl Scalabrini Ortiz"</div>
+            </div>
+            <div class="cv-entry-right">
+              <div>Finalizado</div>
+              <div>Berisso, Buenos Aires (Graduado)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- HABILIDADES E IDIOMAS -->
+      <div class="cv-section">
+        <div class="cv-section-title">Habilidades e Idiomas</div>
+        <div class="skills-table">
+          <div class="skill-row">
+            <strong>Conocimientos Técnicos:</strong> Desarrollo Web (HTML5, CSS3 y JavaScript / JS), Programación asistida por Inteligencia Artificial (IA), Publicación en GitHub Pages, Armado, diagnóstico y reparación de PC, Instalación y configuración de Windows, Manejo fluido de PC e internet.
+          </div>
+          <div class="skill-row">
+            <strong>Competencias Laborales:</strong> Buena atención al cliente, Trato cordial y respetuoso, Trabajo en equipo, Aprendizaje rápido de sistemas nuevos, Responsabilidad, puntualidad e incorporación inmediata.
+          </div>
+          <div class="skill-row">
+            <strong>Idiomas:</strong> Español (Nativo) • Inglés (Básico / Técnico para lectura de código y herramientas).
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cv-body -->
+
+    <!-- PRINT -->
+    <div class="print-bar">
+      <button class="print-btn" onclick="window.print()">
+        ↓ Descargar / Imprimir CV en PDF
+      </button>
+    </div>
+
+  </div><!-- /cv-wrapper -->
+
+  <script>
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+
+    // Iniciar con Modo Cyberpunk por defecto
+    document.body.classList.add('dark-mode');
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        if (isDark) {
+          themeIcon.textContent = '☀️';
+          themeText.textContent = 'Modo Hoja Blanca';
+        } else {
+          themeIcon.textContent = '🌙';
+          themeText.textContent = 'Modo Cyberpunk';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

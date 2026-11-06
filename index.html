@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;KM/&gt; | PortFolio</title>
+  <meta name="description" content="Portfolio profesional de Kevin Martínez. Atención al Cliente, Soporte Técnico de PC y Desarrollo Web Junior con IA en Berisso, Buenos Aires.">
+  
+  <!-- Tipografías: Poppins & Roboto Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Icono Cyberpunk <KM/> en Naranja (#FFA500) y Rojo (#780606) sobre Negro (#000000) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='12,3 52,3 61,12 61,52 52,61 12,61 3,52 3,12' fill='%23000000' stroke='%23FFA500' stroke-width='3.5'/%3E%3Cpolyline points='8,18 8,14 14,8 22,8' fill='none' stroke='%23780606' stroke-width='3'/%3E%3Cpolyline points='56,46 56,50 50,56 42,56' fill='none' stroke='%23FFA500' stroke-width='3'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='16.5' font-weight='900' text-anchor='middle' dominant-baseline='middle'%3E%3Ctspan fill='%23780606'%3E%26lt;%3C/tspan%3E%3Ctspan fill='%23FFA500'%3EKM%3C/tspan%3E%3Ctspan fill='%23780606'%3E/%26gt;%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+  <link rel="alternate icon" href="./assets/favicon-Dav4FRSR.svg">
+  <script type="module" crossorigin src="./assets/main-B2KD1dnm.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-CXl_V8Ts.css">
+</head>
+<body>
+
+  <!-- Pantalla Personalizada de Carga / Entrada (Cyberpunk + Años 30 Rubber Hose) -->
+  <aside id="intro-splash" class="intro-splash" aria-label="Cargando Portfolio Personal">
+    <div class="intro-splash-backdrop"></div>
+    <div class="intro-splash-sunburst" aria-hidden="true"></div>
+    <div class="intro-splash-scanlines" aria-hidden="true"></div>
+    <div class="intro-splash-vignette" aria-hidden="true"></div>
+
+    <div class="intro-stage-container">
+      <!-- Circuitos y mangueras decorativas laterales (Simetría Bilateral 100%) -->
+      <div class="splash-circuit-arm arm-left" aria-hidden="true">
+        <span class="circuit-wire"></span>
+        <span class="circuit-node node-1"></span>
+        <span class="circuit-node node-2"></span>
+        <span class="circuit-node node-3"></span>
+      </div>
+      <div class="splash-circuit-arm arm-right" aria-hidden="true">
+        <span class="circuit-wire"></span>
+        <span class="circuit-node node-1"></span>
+        <span class="circuit-node node-2"></span>
+        <span class="circuit-node node-3"></span>
+      </div>
+
+      <!-- Tarjeta central Cyberpunk con detalles retro -->
+      <div class="intro-splash-card neo-box">
+        <!-- Esquinas cibernéticas estilizadas reforzadas -->
+        <span class="corner-accent corner-tl" aria-hidden="true"></span>
+        <span class="corner-accent corner-tr" aria-hidden="true"></span>
+        <span class="corner-accent corner-bl" aria-hidden="true"></span>
+        <span class="corner-accent corner-br" aria-hidden="true"></span>
+
+        <!-- Estrellas retro de dibujos animados años 30 titilando -->
+        <span class="splash-star star-left" aria-hidden="true">✦</span>
+        <span class="splash-star star-right" aria-hidden="true">✦</span>
+
+        <!-- Núcleo central giratorio Cyberpunk Reactor + Emblema <KM/> -->
+        <div class="intro-reactor-wrap">
+          <div class="reactor-outer-ring" aria-hidden="true"></div>
+          <div class="reactor-inner-ring" aria-hidden="true"></div>
+          <div class="reactor-pulse-glow" aria-hidden="true"></div>
+
+          <div class="intro-brand-wrap">
+            <div class="intro-brand-pill">
+              <span class="intro-bracket">&lt;</span><span class="intro-letters">KM</span><span class="intro-accent">/&gt;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Único texto: PORTFOLIO PERSONAL -->
+        <div class="intro-info">
+          <span class="intro-tag-pill">✦ PORTFOLIO PERSONAL ✦</span>
+        </div>
+
+        <!-- Barra de carga cibernética estilizada con porcentaje -->
+        <div class="intro-progress-container">
+          <div class="intro-progress-track">
+            <div class="intro-progress-fill" id="intro-progress-fill"></div>
+            <div class="intro-progress-glow-head"></div>
+          </div>
+          <div class="intro-pct-wrap">
+            <span class="intro-status-pct" id="intro-status-pct">0%</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </aside>
+
+  <!-- Fondo Exterior Negro (#000000) con Cyberpunk + Sombras + Animación Años 30 (Cuphead Rubber Hose) -->
+  <div class="rubber-stage-backdrop" aria-hidden="true"></div>
+  <canvas id="bg-canvas" class="interactive-bg-canvas" aria-hidden="true"></canvas>
+  <div class="cuphead-film-grain" aria-hidden="true"></div>
+  <div class="cuphead-dust-scratches" aria-hidden="true">
+    <div class="scratch scratch-1"></div>
+    <div class="scratch scratch-2"></div>
+    <div class="scratch scratch-3"></div>
+  </div>
+  <div class="cyber-scanlines" aria-hidden="true"></div>
+  <div class="cyber-vignette" aria-hidden="true"></div>
+
+  <!-- Barra de Navegación Fija (Oculta durante la mini-animación para dar prioridad a la presentación) -->
+  <header class="navbar-wrapper navbar-hidden" id="navbar-wrapper">
+    <nav class="navbar" aria-label="Navegación principal">
+      <a href="#presentacion" class="nav-brand">
+        <span class="brand-bracket">&lt;</span><span class="brand-letters">KM</span><span class="brand-accent">/&gt;</span>
+      </a>
+
+      <!-- Botón Hamburguesa alineado a la derecha en móvil -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#presentacion" class="nav-item active">Sobre Mí</a></li>
+        <li><a href="#experiencia" class="nav-item">Experiencia</a></li>
+        <li><a href="#educacion" class="nav-item">Educación</a></li>
+        <li><a href="#skills" class="nav-item">Habilidades</a></li>
+        <li><a href="#proyectos" class="nav-item">Proyectos</a></li>
+        <li><a href="#contacto" class="nav-item">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content-container">
+
+    <!-- Sección 1: Presentación / Sobre Mí (Hero) -->
+    <section id="presentacion" class="section hero-section">
+      <div class="hero-card neo-box cyber-card">
+        <div class="hero-banner-strip">
+          <div class="status-pill">
+            <span class="status-indicator"></span>
+            <span>Disponible para incorporación inmediata • Soporte Técnico &amp; Web</span>
+          </div>
+        </div>
+
+        <div class="hero-body">
+          <h1 class="hero-title">
+            Hola, soy <span class="highlight-text-orange">Kevin Martínez</span>
+          </h1>
+
+          <p class="hero-role-subtitle">
+            Soporte Técnico IT <span class="role-divider">✦</span> Desarrollo Web Junior <span class="role-divider">✦</span> Atención al Público
+          </p>
+
+          <!-- Perfil Profesional unificado y sincero -->
+          <p class="hero-intro">
+            Técnico en soporte y armado de PC, formado en desarrollo web (HTML, CSS y JS) con asistencia de IA. Cuento con sólida facilidad para la atención al público, trato cordial y trabajo en equipo. Aprendo rápido y busco sumar soluciones prácticas y eficientes en mi puesto de trabajo.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#experiencia" class="btn btn-primary">
+              <span>Ver Trayectoria</span>
+              <span class="btn-arrow">→</span>
+            </a>
+            <a href="#proyectos" class="btn btn-secondary">
+              <span>Ver Proyectos</span>
+            </a>
+            <a href="#contacto" class="btn btn-outline-cyber">
+              <span>Contactar</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 2: Experiencia Práctica y Técnica -->
+    <section id="experiencia" class="section experience-section">
+      <div class="section-header">
+        <span class="section-tag">✦ TRAYECTORIA TÉCNICA</span>
+        <h2 class="section-title">Experiencia Práctica y Técnica</h2>
+        <p class="section-subtitle">
+          Mantenimiento y diagnóstico de computadoras, atención a usuarios y desarrollo web con asistencia de IA.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        
+        <!-- Experiencia 1: Diagnóstico, Reparación de PC y Asistencia a Usuarios -->
+        <article class="skill-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-orange">2025 – PRESENTE</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+          </div>
+
+          <div class="skill-card-body">
+            <h3 class="skill-title">Diagnóstico, Reparación de PC y Asistencia a Usuarios</h3>
+            <p class="exp-meta">
+              Práctica Formativa e Independiente (CFL N° 404) • Berisso, Buenos Aires
+            </p>
+            <ul class="cyber-list">
+              <li>Armado, diagnóstico de fallas y mantenimiento preventivo de PC y notebooks.</li>
+              <li>Instalación y configuración de Windows, drivers y programas esenciales.</li>
+              <li>Atención y orientación a usuarios con paciencia, claridad y trato cordial.</li>
+            </ul>
+          </div>
+
+          <div class="skill-tags">
+            <span class="tech-chip">Hardware &amp; Software</span>
+            <span class="tech-chip">Windows &amp; Drivers</span>
+            <span class="tech-chip">PC &amp; Notebooks</span>
+            <span class="tech-chip">Atención a Usuarios</span>
+          </div>
+        </article>
+
+        <!-- Experiencia 2: Práctica en Desarrollo Web y Uso de IA -->
+        <article class="skill-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-red">2026 – PRESENTE</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <div class="skill-card-body">
+            <h3 class="skill-title">Práctica en Desarrollo Web (HTML, CSS, JS) y Uso de IA</h3>
+            <p class="exp-meta">
+              Prácticas de Programación (CFL N° 404) • Berisso, Buenos Aires
+            </p>
+            <ul class="cyber-list">
+              <li>Desarrollo de páginas web con HTML5, CSS3 y JS, usando IA para agilizar y resolver dudas.</li>
+              <li>Publicación de proyectos de práctica en GitHub Pages con diseño limpio y adaptable.</li>
+              <li>Trabajo en equipo en ejercicios prácticos, compartiendo código y soluciones.</li>
+            </ul>
+          </div>
+
+          <div class="skill-tags">
+            <span class="tech-chip">HTML5 / CSS3 / JS</span>
+            <span class="tech-chip">Asistencia con IA</span>
+            <span class="tech-chip">GitHub Pages</span>
+            <span class="tech-chip">Trabajo en Equipo</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sección 3: Educación y Certificaciones -->
+    <section id="educacion" class="section education-section">
+      <div class="section-header">
+        <span class="section-tag">✦ FORMACIÓN ACADÉMICA</span>
+        <h2 class="section-title">Educación y Certificaciones</h2>
+        <p class="section-subtitle">
+          Formación técnica oficial en programación web, soporte de hardware y nivel secundario completo.
+        </p>
+      </div>
+
+      <div class="education-grid">
+
+        <!-- Educación 1: Programación -->
+        <article class="edu-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-orange">2026 – EN CURSO</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <h3 class="edu-title">Formación Profesional en Programación</h3>
+            <p class="edu-institution">CFL N° 404 (Berisso) – cfl404.ar</p>
+            <p class="edu-status">📍 Cursando actualmente • Berisso</p>
+          </div>
+        </article>
+
+        <!-- Educación 2: Armado y Reparación de PC -->
+        <article class="edu-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-red">FINALIZADO EN 2026</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <h3 class="edu-title">Certificación en Armado y Reparación de PC</h3>
+            <p class="edu-institution">CFL N° 404 (Berisso) – cfl404.ar</p>
+            <p class="edu-status">✓ Aprobado • Certificado en trámite</p>
+          </div>
+        </article>
+
+        <!-- Educación 3: Secundaria Completa -->
+        <article class="edu-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-orange">FINALIZADO</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <h3 class="edu-title">Educación Secundaria Completa</h3>
+            <p class="edu-institution">E.E.S. N° 1 "Raúl Scalabrini Ortiz"</p>
+            <p class="edu-status">🎓 Graduado (Bachiller) • Berisso</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sección 4: Habilidades e Idiomas -->
+    <section id="skills" class="section skills-section">
+      <div class="section-header">
+        <span class="section-tag">✦ HABILIDADES &amp; COMPETENCIAS</span>
+        <h2 class="section-title">Habilidades e Idiomas</h2>
+        <p class="section-subtitle">
+          Conocimientos informáticos y de desarrollo web, competencias laborales y trato con personas.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        
+        <!-- Skill 1: Competencias Laborales & Atención al Cliente -->
+        <article class="skill-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-red">COMPETENCIAS LABORALES</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="skill-card-body">
+            <h3 class="skill-title">Atención al Cliente &amp; Trabajo en Equipo</h3>
+            <p class="skill-description">
+              Trato cordial, paciente y respetuoso con la gente. Facilidad para el trabajo en equipo, aprendizaje rápido de nuevos sistemas y disponibilidad inmediata.
+            </p>
+          </div>
+
+          <div class="skill-tags">
+            <span class="tech-chip">Atención al Público</span>
+            <span class="tech-chip">Trato Cordial</span>
+            <span class="tech-chip">Aprendizaje Rápido</span>
+            <span class="tech-chip">Responsabilidad</span>
+          </div>
+        </article>
+
+        <!-- Skill 2: Soporte Técnico y Reparación de PC -->
+        <article class="skill-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-orange">HARDWARE &amp; SISTEMAS</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="4"></line>
+                <line x1="15" y1="1" x2="15" y2="4"></line>
+                <line x1="9" y1="20" x2="9" y2="23"></line>
+                <line x1="15" y1="20" x2="15" y2="23"></line>
+                <line x1="20" y1="9" x2="23" y2="9"></line>
+                <line x1="20" y1="14" x2="23" y2="14"></line>
+                <line x1="1" y1="9" x2="4" y2="9"></line>
+                <line x1="1" y1="14" x2="4" y2="14"></line>
+              </svg>
+            </div>
+          </div>
+
+          <div class="skill-card-body">
+            <h3 class="skill-title">Armado y Reparación de PC</h3>
+            <p class="skill-description">
+              Diagnóstico y solución de fallas en PC y notebooks. Instalación limpia de Windows, drivers y programas esenciales, con manejo fluido de herramientas digitales.
+            </p>
+          </div>
+
+          <div class="skill-tags">
+            <span class="tech-chip">Diagnóstico de PC</span>
+            <span class="tech-chip">Mantenimiento</span>
+            <span class="tech-chip">Instalación Windows</span>
+            <span class="tech-chip">Configuración Drivers</span>
+          </div>
+        </article>
+
+        <!-- Skill 3: Desarrollo Web & IA -->
+        <article class="skill-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-orange">CONOCIMIENTOS TÉCNICOS</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <div class="skill-card-body">
+            <h3 class="skill-title">Desarrollo Web Junior &amp; IA</h3>
+            <p class="skill-description">
+              Maquetación y páginas web con HTML5, CSS3 y JavaScript. Programación asistida por IA para agilizar el armado y publicación de proyectos en GitHub Pages.
+            </p>
+          </div>
+
+          <div class="skill-tags">
+            <span class="tech-chip">HTML5 &amp; CSS3</span>
+            <span class="tech-chip">JavaScript (JS)</span>
+            <span class="tech-chip">Programación con IA</span>
+            <span class="tech-chip">GitHub Pages</span>
+          </div>
+        </article>
+
+        <!-- Skill 4: Idiomas -->
+        <article class="skill-card neo-box cyber-card">
+          <div class="skill-card-top">
+            <span class="card-badge badge-red">COMUNICACIÓN GLOBAL</span>
+            <div class="skill-icon-wrapper">
+              <svg class="skill-svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="skill-card-body">
+            <h3 class="skill-title">Idiomas</h3>
+            <p class="skill-description">
+              Español nativo para una atención clara y respetuosa al público. Inglés básico y técnico aplicado a la lectura de código, interfaces y documentación.
+            </p>
+          </div>
+
+          <div class="skill-tags">
+            <span class="tech-chip">Español (Nativo)</span>
+            <span class="tech-chip">Inglés Técnico</span>
+            <span class="tech-chip">Lectura de Código</span>
+            <span class="tech-chip">Herramientas IT</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sección 5: Proyectos -->
+    <section id="proyectos" class="section projects-section">
+      <div class="section-header">
+        <span class="section-tag">✦ PROYECTOS &amp; DESARROLLOS</span>
+        <h2 class="section-title">Proyectos</h2>
+        <p class="section-subtitle">
+          Proyectos de práctica publicados en internet para demostrar maquetación web, interactividad y diseño adaptable.
+        </p>
+      </div>
+
+      <!-- Cuadrícula simétrica de Proyectos (Mobile-first a 1 col, Desktop a 2 col) -->
+      <div class="projects-grid">
+
+        <!-- Proyecto 1: Portfolio de Prueba (walthier.github.io/PortFolio) -->
+        <article class="project-card neo-box cyber-card">
+          <div class="project-card-header">
+            <span class="project-tag">PORTFOLIO DE PRUEBA</span>
+            <div class="project-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Mockup Visual de Ventana Cyberpunk -->
+          <div class="project-mockup-frame" aria-hidden="true">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+              <span class="mockup-url">walthier.github.io/PortFolio</span>
+            </div>
+            <div class="mockup-screen screen-wm">
+              <div class="screen-preview-content">
+                <div class="mini-badge-row">
+                  <span class="mini-dot-live"></span>
+                  <span class="mini-screen-tag">&lt;WM/&gt; RETRO CYBER</span>
+                </div>
+                <div class="mini-screen-hero">
+                  <div class="mini-avatar-box">&lt;WM/&gt;</div>
+                  <div class="mini-text-lines">
+                    <span class="line line-lg"></span>
+                    <span class="line line-md"></span>
+                    <span class="line line-sm"></span>
+                  </div>
+                </div>
+                <div class="mini-chips-grid">
+                  <span>HTML5</span><span>CSS3</span><span>JS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card-body">
+            <h3 class="project-title">&lt;WM/&gt; PortFolio (Demo)</h3>
+            <p class="project-desc">
+              Mi primer portfolio web de prueba publicado en GitHub Pages. Creado con HTML, CSS y JavaScript con temática retro y diseño adaptable.
+            </p>
+            <div class="project-tech-row">
+              <span class="mini-cyber-tag">HTML5</span>
+              <span class="mini-cyber-tag">CSS3</span>
+              <span class="mini-cyber-tag">JavaScript</span>
+              <span class="mini-cyber-tag">GitHub Pages</span>
+            </div>
+          </div>
+          <div class="project-card-action project-actions-dual">
+            <a href="https://walthier.github.io/PortFolio/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-project-cta" aria-label="Visitar demo de PortFolio en GitHub Pages">
+              <span>Visitar página</span>
+              <svg class="icon-external" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+            <a href="https://github.com/Walthier/PortFolio" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-project-cta" aria-label="Ver repositorio de código en GitHub">
+              <span>Código GitHub</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Proyecto 2: Don Pochoclón -->
+        <article class="project-card neo-box cyber-card">
+          <div class="project-card-header">
+            <span class="project-tag">DEMO &amp; EXPERIMENTO IA</span>
+            <div class="project-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Mockup Visual de Ventana Cyberpunk -->
+          <div class="project-mockup-frame" aria-hidden="true">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+              <span class="mockup-url">don-pochoclon.local</span>
+            </div>
+            <div class="mockup-screen screen-pochoclon">
+              <div class="screen-preview-content">
+                <div class="mini-badge-row">
+                  <span class="mini-dot-live gold"></span>
+                  <span class="mini-screen-tag gold">🍿 DON POCHOCLÓN</span>
+                </div>
+                <div class="mini-screen-hero">
+                  <div class="mini-avatar-box gold">🍿</div>
+                  <div class="mini-text-lines">
+                    <span class="line line-lg gold"></span>
+                    <span class="line line-md gold"></span>
+                    <span class="line line-sm gold"></span>
+                  </div>
+                </div>
+                <div class="mini-chips-grid gold">
+                  <span>LANDING</span><span>MAQUETADO</span><span>IA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card-body">
+            <h3 class="project-title">Don Pochoclón</h3>
+            <p class="project-desc">
+              Página web de prueba para un emprendimiento ficticio. Creada para practicar maquetación moderna y desarrollo ágil con IA.
+            </p>
+            <div class="project-tech-row">
+              <span class="mini-cyber-tag">Landing Page</span>
+              <span class="mini-cyber-tag">HTML5 &amp; CSS3</span>
+              <span class="mini-cyber-tag">Diseño con IA</span>
+              <span class="mini-cyber-tag">Responsive</span>
+            </div>
+          </div>
+          <div class="project-card-action project-actions-dual">
+            <a href="./pagina-ia.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-project-cta" aria-label="Visitar demo de Don Pochoclón">
+              <span>Visitar página</span>
+              <svg class="icon-external" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+            <a href="https://github.com/Walthier" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-project-cta" aria-label="Ver perfil de proyectos en GitHub">
+              <span>Código GitHub</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sección 6: Contacto -->
+    <section id="contacto" class="section contact-section">
+      <div class="contact-card neo-box cyber-card">
+        <div class="contact-header">
+          <div class="contact-header-left">
+            <span class="section-tag">✦ CONTACTO &amp; REDES</span>
+            <h2 class="section-title">Contacto</h2>
+            <p class="section-subtitle">
+              Disponible para incorporación inmediata en atención al público, soporte técnico o desarrollo web. Podés contactarme por correo o redes.
+            </p>
+          </div>
+
+          <!-- Botón de CV a la izquierda y "Berisso, Buenos Aires" en NARANJA A LA DERECHA -->
+          <div class="contact-header-right">
+            <div class="cv-action-btns">
+              <!-- Botón ver CV -->
+              <a href="./cv.html" target="_blank" rel="noopener noreferrer" class="cv-btn cv-btn-view" aria-label="Mirar CV">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <span>Mirar CV</span>
+              </a>
+            </div>
+
+            <div class="location-badge contact-location-badge">
+              <svg class="icon-pin" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span>Berisso, Buenos Aires</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Bloque 1: Correo Electrónico (del CV) -->
+          <div class="contact-method-card">
+            <div class="contact-method-header">
+              <div class="method-title-wrap">
+                <span class="method-label">CORREO ELECTRÓNICO</span>
+                <span class="method-value" id="email-text">kevintobiasmartinez@gmail.com</span>
+              </div>
+              <div class="method-icon-circle">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="method-actions contact-actions-dual">
+              <a href="mailto:kevintobiasmartinez@gmail.com" class="btn btn-small btn-primary" aria-label="Enviar correo electrónico a Kevin Martínez">
+                <span>Enviar Correo</span>
+                <span class="btn-arrow">→</span>
+              </a>
+              <button class="btn btn-small btn-secondary btn-copy" data-copy="kevintobiasmartinez@gmail.com" aria-label="Copiar correo electrónico al portapapeles">
+                <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span class="copy-label">Copiar</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bloque 2: LinkedIn (del CV) -->
+          <div class="contact-method-card">
+            <div class="contact-method-header">
+              <div class="method-title-wrap">
+                <span class="method-label">PERFIL DE LINKEDIN</span>
+                <span class="method-value">linkedin.com/in/kevin-martinez-9a8bb5446</span>
+              </div>
+              <div class="method-icon-circle">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="method-actions">
+              <a href="https://www.linkedin.com/in/kevin-martinez-9a8bb5446" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-primary">
+                <span>Conectar en LinkedIn</span>
+                <span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bloque 3: GitHub -->
+          <div class="contact-method-card">
+            <div class="contact-method-header">
+              <div class="method-title-wrap">
+                <span class="method-label">PERFIL DE GITHUB</span>
+                <span class="method-value">github.com/Walthier</span>
+              </div>
+              <div class="method-icon-circle">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="method-actions">
+              <a href="https://github.com/Walthier" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-primary">
+                <span>Visitar @Walthier</span>
+                <span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Compacto y Simétrico -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p class="copyright">
+          &copy; <span id="current-year">2026</span> Kevin Martínez. Todos los derechos reservados.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <p class="brand-desc">Soporte Técnico IT &amp; Desarrollo Web Junior — Berisso, Buenos Aires.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
